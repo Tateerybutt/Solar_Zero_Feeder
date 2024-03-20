@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#D0D5DB">
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <nav>
+        <img src="logo.png" alt="Branding Logo">
+    </nav>
+    <h1>Dashboard</h1>
+    <section>
+        <h2>OpenDTU</h1>
+            <p>No Connection to OpenDTU</p>
+    </section>
+    <section>
+        <h2>Smart Meters</h2>
+        <div class="content">
+            <p>Smart Meter #1</p>
+            <p class="my-element">Type: Shelly 3EM</p>
+            <span>IP not set</span>
+    </section>
+    <script>
+        const element = document.querySelector('.my-element');
+        const fontSize = window.getComputedStyle(element).getPropertyValue('font-size');
+        console.log('Font size:', fontSize);
+    </script>
+</body>
+
+</html>
