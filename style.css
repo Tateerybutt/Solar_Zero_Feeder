@@ -1,7 +1,10 @@
-body {
-    padding: 0;
+body,
+html {
+    height: 100%;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 :root {
@@ -33,20 +36,23 @@ section {
     }
 }
 
-.fileupload{
-    margin: 10px auto;
+.container {
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    text-align: left;
+    /* Align content to the left */
 }
 
-.container{
-    text-align: center;
-}
 
-.check{
+.check {
     font-size: 20px;
 }
 
-#file{
-    font-size: xx-large;
+#file {
+    width: fit-content;
+    font-size: x-large;
+    max-width: 400px;
     border: 1px solid #666;
     padding: 10px;
     border-radius: 3px;
