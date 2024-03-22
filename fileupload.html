@@ -6,9 +6,51 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <style>
-        div{
-            align-self: center;
+        body {
+            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        div {
+            text-align: center;
             margin: auto;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+            border: 1px solid #666;
+            border-radius: 3px;
+            font-size: 22px;
+        }
+
+        input[type="radio"] {
+            width: 32px;
+            height: 32px;
+        }
+
+        input[type="radio"]:checked {
+            color: blue;
+        }
+
+        label {
+            font-size: 42px;
+        }
+
+        .radio {
+            margin-top: 14px;
+            padding: 4px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            background-color: #eee;
+        }
+
+        .active {
+            color: white;
+            background-color: rgb(24, 139, 255);
         }
     </style>
 </head>
@@ -24,7 +66,19 @@
             <label for="option2">FileSystem</label><br>
             <input type="file" name="file" id="file">
         </form>
+        <div>
+            <button class="radio" onclick="swapclass()" id="radio">CD7554DC</button> <span> - </span> <button
+                class="radio active" id="radio">ESP32</button>
+        </div>
     </div>
+    <script>
+        console.log()
+        function swapclass() {
+            radio = document.getElementById('radio');
+            console.log(radio.classList);
+        }
+    </script>
+
 </body>
 
 </html>
