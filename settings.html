@@ -1,0 +1,212 @@
+<!-- settings.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+         :root {
+            --theme-color: #D0D5DB;
+        }
+        
+        h1 {
+            margin-left: 10px;
+        }
+        
+        nav {
+            background-color: var(--theme-color);
+            width: 100%;
+            margin: 0%;
+            padding: 14px;
+            margin-bottom: 20px;
+            img {
+                max-width: 200px;
+                margin: 0%;
+            }
+        }
+        
+        section {
+            margin: 60px 40px;
+            span {
+                font-size: 14px;
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+            text-align: left;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-header {
+            justify-content: space-between;
+            border-bottom: 2px solid #ccc;
+            padding: 10px;
+            cursor: pointer;
+            width: 150px;
+        }
+        
+        .dropdown-header.active {
+            border-bottom-color: purple;
+            i {
+                border-top-color: purple;
+            }
+        }
+        
+        .dropdown-options {
+            border-radius: 5px;
+            width: 170px;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            background-color: #fff;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        
+        .option {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE10+/Edge */
+            user-select: none;
+            /* Standard syntax */
+            display: flex;
+            transition: 200ms color ease-in;
+            transition: 300ms background-color ease-in;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 3px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .arrow {
+            float: right;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+        }
+        
+        .down {
+            border-top-color: #000;
+        }
+        
+        .selected {
+            background-color: #f7f7f7;
+            color: purple;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#D0D5DB">
+    <title>Settings</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <nav>
+        <img src="logo.png" alt="Branding Logo">
+    </nav>
+    <h1>Settings</h1>
+    <section style="margin-top: 0;">
+        <input type="checkbox" id="Expert-Mode" name="Expert-Mode" value="Expert-Mode">
+        <label for="Expert-Mode">Expert-Mode</label><br>
+        <input type="checkbox" id="Debug-Mode" name="Debug-Mode" value="Debug-Mode">
+        <label for="Debug-Mode">Debug-Mode</label><br>
+    </section>
+    <section>
+        <h2>Smart Meters</h2>
+        <input type="checkbox" name="SMSmartPlugMode" id="SMSmartPlugMode" value="SM Smart Plug Mode">
+        <label for="SMSmartPlugMode">SM Smart Plug Mode</label><br>
+        <label style="font-size: x-small;margin-left: 12px;" id="label" for="dropdown">Type</label><br>
+        <div class="dropdown">
+            <div class="dropdown-header" onclick='toggleDropdown()'>Select Meter <i class="arrow down"></i></div>
+            <div class="dropdown-options" id="dropdown-options">
+                <div class="option" onclick="handleoptionclick('option1')" id="option1">Option 1</div>
+                <div class="option" onclick="handleoptionclick('option2')" id="option2">Option 2</div>
+                <div class="option" onclick="handleoptionclick('option3')" id="option3">Option 3</div>
+            </div>
+        </div>
+
+    </section>
+    <section>
+        <h2>Open DTU</h2>
+        <input type="checkbox" name="connection" id="connection">
+        <label for="connection">Check Connection</label><br>
+        <label for="crediantals">Differnt Credientals</label>
+        <input type="checkbox" name="crediantals" id="crediantals" style="margin-left: 0; left:0; margin-top: 30px;">
+    </section>
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.querySelector('.dropdown-header');
+            var options = document.getElementById('dropdown-options');
+            var label = document.getElementById('label');
+            var arrow = document.querySelector('.arrow');
+
+            dropdown.classList.toggle('active');
+
+            if (dropdown.classList.contains('active')) {
+                options.style.display = 'block';
+                label.style.color = 'purple';
+                arrow.classList.remove('down');
+                arrow.classList.add('up');
+            } else {
+                options.style.display = 'none';
+                label.style.color = 'default';
+                arrow.classList.remove('up');
+                arrow.classList.add('down');
+            }
+        }
+
+        function handleoptionclick(optionId) {
+            var option = document.getElementById(optionId);
+            var dropdown = document.querySelector('.dropdown-header');
+            if (option.classList.contains("selected")) {
+                dropdown.innerHTML = 'Select Meter <i class="arrow down"></i>'
+                option.classList.remove("selected");
+                option.innerHTML = option.textContent; // Remove marked icon
+            } else {
+                var options = document.getElementsByClassName("option");
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].id === optionId) {
+                        options[i].classList.add("selected");
+                        updateDropdownHeader();
+                        options[i].innerHTML += '<i class="fa-solid fa-check"></i>'; // Add marked icon
+                    } else {
+                        options[i].classList.remove("selected");
+                        options[i].innerHTML = options[i].textContent; // Remove marked icon
+                    }
+                }
+            }
+        }
+
+        function updateDropdownHeader() {
+            var selectedOption = document.querySelector('.option.selected');
+            var header = document.querySelector('.dropdown-header');
+            header.innerHTML = selectedOption.textContent + ' <i class="arrow down"></i>';
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
